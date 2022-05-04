@@ -1,6 +1,8 @@
 # cyber-intelligence-2022
 Soluzione dockerizzata per NiFi e Elasticsearch. Il progetto sarà utilizzato nell'ambito del corso 2022 di "Cyber Intelligence" del master in CyberSecurity dell'Università di Pisa
 
+## Istruzioni per utilizzare la soluzione dockerizzata
+
 1. Scaricate e installate Docker Desktop da https://www.docker.com/products/docker-desktop/#
 2. Scaricare la soluzione dockerizzata da  https://github.com/tizfa/cyber-intelligence-2022 all’interno di una cartella locale utilizzando uno dei metodi possibili (ad esempio pacchetto zip oppure tramite il comando git clone). Ad esempio tramite git potete scaricare il progetto con il seguente comando  
 `git clone https://github.com/tizfa/cyber-intelligence-2022.git`
