@@ -1,0 +1,218 @@
+PUT italiantweets
+{
+  "settings": {
+    "index": {
+      "number_of_shards": 3,
+      "number_of_replicas": 2
+    }
+  },
+  "mappings": {
+      "properties": {
+        "created_at": {
+          "type": "date",
+          "format": "EEE MMM dd HH:mm:ss Z yyyy"
+        },
+        "geo": {
+          "properties": {
+            "coordinates": {
+              "type": "geo_point"
+            },
+            "type": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            }
+          }
+        },
+        "place": {
+          "properties": {
+            "full_name": {
+              "type": "text",
+              "fielddata":true
+            },
+            "place_type": {
+              "type": "keyword"
+            },
+            "country": {
+              "type":"keyword"
+            },
+            "name": {
+              "type":"keyword"
+            }
+          }
+        },
+        "truncated": {
+          "type": "boolean"
+        },
+        "timestamp_ms": {
+          "type": "long"
+        },
+        "source": {
+          "type": "text"
+        },
+        "retweet_count": {
+          "type": "long"
+        },
+        "retweeted": {
+          "type": "boolean"
+        },
+        "filter_level": {
+          "type": "text"
+        },
+        "is_quote_status": {
+          "type": "boolean"
+        },
+        "entities": {
+          "type": "object"
+        },
+        "id_str": {
+          "type": "text"
+        },
+        "favorite_count": {
+          "type": "long"
+        },
+        "id": {
+          "type": "long"
+        },
+        "text": {
+          "type": "text",
+          "fielddata": true
+        },
+        "lang": {
+          "type": "keyword"
+        },
+        "coordinates": {
+          "properties": {
+            "coordinates": {
+              "type": "geo_point"
+            }
+          }
+        },
+        "user": {
+          "properties": {
+            "utc_offset": {
+              "type": "long"
+            },
+            "friends_count": {
+              "type": "long"
+            },
+            "profile_image_url_https": {
+              "type": "text"
+            },
+            "listed_count": {
+              "type": "long"
+            },
+            "profile_background_image_url": {
+              "type": "text"
+            },
+            "default_profile_image": {
+              "type": "boolean"
+            },
+            "favourites_count": {
+              "type": "long"
+            },
+            "created_at": {
+              "type": "text"
+            },
+            "description": {
+              "type": "text"
+            },
+            "is_translator": {
+              "type": "boolean"
+            },
+            "profile_background_image_url_https": {
+              "type": "text"
+            },
+            "protected": {
+              "type": "boolean"
+            },
+            "screen_name": {
+              "type": "text"
+            },
+            "id_str": {
+              "type": "text"
+            },
+            "profile_link_color": {
+              "type": "text"
+            },
+            "geo_enabled": {
+              "type": "boolean"
+            },
+            "id": {
+              "type": "long"
+            },
+            "profile_background_color": {
+              "type": "text"
+            },
+            "lang": {
+              "type": "keyword"
+            },
+            "profile_sidebar_border_color": {
+              "type": "text"
+            },
+            "profile_text_color": {
+              "type": "text"
+            },
+            "verified": {
+              "type": "boolean"
+            },
+            "profile_image_url": {
+              "type": "text"
+            },
+            "time_zone": {
+              "type": "text"
+            },
+            "contributors_enabled": {
+              "type": "boolean"
+            },
+            "profile_background_tile": {
+              "type": "boolean"
+            },
+            "statuses_count": {
+              "type": "long"
+            },
+            "default_profile": {
+              "type": "boolean"
+            },
+            "followers_count": {
+              "type": "long"
+            },
+            "profile_use_background_image": {
+              "type": "boolean"
+            },
+            "name": {
+              "type": "text"
+            },
+            "location": {
+              "type": "text"
+            },
+            "profile_sidebar_fill_color": {
+              "type": "text"
+            }
+          }
+        },
+        "favorited": {
+          "type": "boolean"
+        },
+        "enrichedData": {
+          "properties": {
+             "cleanText": {
+               "type": "text",
+               "fielddata":true
+             },
+             "imageUrl":{
+               "type": "keyword"
+             },
+             "videoUrl":{
+               "type": "keyword"
+             }
+             
+          }
+        }
+      }
+  }
+}

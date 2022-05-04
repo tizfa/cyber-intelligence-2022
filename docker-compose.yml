@@ -1,0 +1,80 @@
+version: "3.0"
+services:
+  
+  # Elasticsearch container
+  elasticsearch:
+    container_name: es-container
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.3
+    environment:
+      - xpack.security.enabled=false
+      - "discovery.type=single-node"
+    networks:
+      - es-net
+    volumes:
+      - esdata:/usr/share/elasticsearch/data:rw
+    ports:
+      - 9200:9200
+    restart: unless-stopped
+
+  # Kibana container
+  kibana:
+    container_name: kb-container
+    image: docker.elastic.co/kibana/kibana:7.17.3
+    environment:
+      - ELASTICSEARCH_HOSTS=http://es-container:9200
+    networks:
+      - es-net
+    depends_on:
+      - elasticsearch
+    ports:
+      - 5601:5601
+    restart: unless-stopped
+
+  # Nifi container
+  nifi:
+    container_name: nifi-container
+    #image: tizfa/nifi-cyberintelligence
+    build: ./nifi-cyberintelligence
+    networks:
+      - es-net
+    environment:
+      ## Default values. Username: [user] Password: [cyberintelligence]
+      - JAVA_HOME=/usr/lib/jvm/default-java/
+    volumes:
+            # Nifi storage
+            - nifi_database_repository:/opt/nifi/database_repository
+            - nifi_flowfile_repository:/opt/nifi/flowfile_repository
+            - nifi_content_repository:/opt/nifi/content_repository
+            - nifi_provenance_repository:/opt/nifi/provenance_repository
+            - nifi_state:/opt/nifi/state
+            - nifi_logs:/opt/nifi/logs
+            - nifi_conf:/opt/nifi/conf
+
+            # Practice folder
+            - ./cint:/home/cint
+    ports:
+      #- 8080:8080
+      - 8443:8443
+      #- 9088:9088
+      #- 6342:6342
+
+volumes:
+  esdata:
+    driver: local
+  nifi_database_repository:
+    driver: local
+  nifi_flowfile_repository:
+    driver: local
+  nifi_content_repository:
+    driver: local
+  nifi_provenance_repository:
+    driver: local
+  nifi_state:
+    driver: local
+  nifi_logs:
+    driver: local
+  nifi_conf:
+    driver: local
+networks:
+  es-net:
+    driver: bridge

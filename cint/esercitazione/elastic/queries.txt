@@ -1,0 +1,161 @@
+
+############# Configurare un analizzatore custom #################
+
+# Verificare l'output dell'analizzatore.
+POST _analyze
+{
+  "analyzer": "standard",
+  "text": "The 2 QUICK Brown-Foxes jumped over the lazy dog's bone."
+}
+
+# Nel file di mapping, per specificare l'analizzatore da usare in un campo specifico:
+"field_name": {
+          "type": "text",
+          "fielddata": true,
+          "analyzer": "standard"
+        }
+
+
+
+##############  ESEMPI DI QUERY ###############
+
+GET twitter/_search
+{
+  "from": 0,
+  "size": 20,
+  "query": {
+    "match": {
+      "text": {
+        "query": "salvini migranti",
+        "operator": "and"
+      }
+    }
+  }
+}
+
+
+
+GET twitter/_search
+{
+  "from": 0,
+  "size": 20,
+  "query": {
+    "match": {
+      "text": {
+        "query": "salvini m5s",
+        "operator": "or"
+      }
+    }
+  }
+}
+
+
+GET twitter/_search
+{
+  "query": {
+    "match_phrase": {
+      "text": {
+        "query": "migranti",
+        "slop": 2
+      }
+      
+    }
+  }
+}
+
+
+GET twitter/_search
+{
+  "query": {
+    "match_phrase_prefix": {
+      "text": {
+        "query": "putin sal",
+        "slop": 10
+      }
+      
+    }
+  }
+}
+
+
+GET twitter/_search
+{
+  "query": {
+    "multi_match": {
+      "query": "putin salvini",
+      "type": "best_fields",
+      "fields": ["webpage.title^3", "text"],
+      "operator": "and"
+    }
+  }
+}
+
+
+GET twitter/_search
+{
+  "query": {
+    "query_string": {
+      "default_field": "text", 
+      "query": "user.description:destra AND text:salvini",
+      "default_operator": "OR"
+    }
+  }
+
+
+GET twitter/_search
+{
+  "query": {
+    "query_string": {
+      "default_field": "text", 
+      "query": "webpage.content:(salvini putin)",
+      "default_operator": "OR"
+    }
+  }
+}
+
+GET twitter/_search
+{
+  "query": {
+    "query_string": {
+      "default_field": "text", 
+      "query": "webpage.content:salvini putin",
+      "default_operator": "OR"
+    }
+  }
+}
+
+
+GET twitter/_search
+{
+  "query": {
+    "query_string": {
+      "default_field": "text", 
+      "query": "user.followers_count:[5000 TO *]",
+      "default_operator": "OR"
+    }
+  }
+}
+
+
+GET twitter/_search
+{
+  "query": {
+    "query_string": {
+      "default_field": "text", 
+      "query": "(text:(salvini OR \"di maio\") AND politicians.polarity:<0)",
+      "default_operator": "OR"
+    }
+  }
+}
+
+
+GET twitter/_search
+{
+  "query": {
+    "query_string": {
+      "default_field": "text", 
+      "query": "webpage.content:europ*^3 OR text:europ*",
+      "default_operator": "OR"
+    }
+  }
+}
