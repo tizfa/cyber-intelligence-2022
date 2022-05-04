@@ -15,3 +15,11 @@ Dopo che le immagini delle varie macchine saranno pronte, saranno istanziate e p
 
 - potrete accedere a Nifi collegandovi all’indirizzo [https://localhost:8443/nifi/](https://localhost:8443/nifi/) . Per l'accesso vi sarà richiesto username e password, inserite come username *user* e password *cyberintelligence*.
 - potrete accedere a Kibana all’indirizzo [http://localhost:5601/app/home#/](http://localhost:5601/app/home#/)
+
+
+La soluzione dockerizzata viene eseguita all'interno di una rete privata composta da 3 macchine:
+- es-container: nome della VM contenente l'istanza di Elasticsearch
+- kb-container: nome della VM contenente l'istanza di Kibana
+- nifi-container: nome della VM contenente l'istanza di Nifi.
+
+Da ciascuna di queste macchine si può comunicare con le altre riferendosi con il nome macchina riportato sopra, ad esempio nel processore PutElasticsearchHttp di Nifi posso connettermi a ES utilizzando l'url http://es-container:9200
