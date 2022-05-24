@@ -23,4 +23,4 @@ La soluzione dockerizzata viene eseguita all'interno di una rete privata compost
 - kb-container: nome della VM contenente l'istanza di Kibana
 - nifi-container: nome della VM contenente l'istanza di Nifi.
 
-Da ciascuna di queste macchine si può comunicare con le altre riferendosi con il nome macchina riportato sopra, ad esempio nel processore PutElasticsearchHttp di Nifi posso connettermi a ES utilizzando l'url http://es-container:9200
+Da ciascuna di queste macchine si può comunicare con le altre riferendosi con il nome macchina riportato sopra, ad esempio nel processore PutElasticsearchHttp di Nifi posso connettermi al web service esposto da `elasticsearch` utilizzando l'url http://es-container:9200.
