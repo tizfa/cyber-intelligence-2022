@@ -22,6 +22,8 @@ services:
     image: docker.elastic.co/kibana/kibana:7.17.3
     environment:
       - ELASTICSEARCH_HOSTS=http://es-container:9200
+      - TELEMETRY_OPTIN=false
+      - TELEMETRY_ENABLED=false
     networks:
       - es-net
     depends_on:

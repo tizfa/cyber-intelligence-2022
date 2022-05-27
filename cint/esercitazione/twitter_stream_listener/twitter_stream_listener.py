@@ -138,6 +138,7 @@ def simplifyDataFormat(jsonData):
     # Extract tweet data
     tweet = {}
     tweet["id"] = jsonData["data"]["id"]
+    tweet["created_at"] = jsonData["data"]["created_at"]
     tweet["text"] = jsonData["data"]["text"]
     tweet["lang"] = jsonData["data"]["lang"]
     tweet["retweet_count"] = jsonData["data"]["public_metrics"]["retweet_count"]
