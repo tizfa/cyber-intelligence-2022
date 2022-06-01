@@ -11,9 +11,9 @@ Soluzione dockerizzata per NiFi e Elasticsearch. Il progetto sarà utilizzato ne
 `docker-compose up`  
 per runnare la soluzione docker
 5. La prima volta che invocherete il comando docker-compose verrano scaricate e opportunamente create le varie immagini Docker (una per ES, una per Kibana e una per Nifi) che compongono la soluzione, l’operazione potrebbe richiedere un po’ di tempo quindi armatevi di pazienza…  
-Dopo che le immagini delle varie macchine saranno pronte, saranno istanziate e pronte per l’uso. In particolare, 
-      - potrete accedere a Nifi collegandovi all’indirizzo [https://localhost:8443/nifi/](https://localhost:8443/nifi/) . Per l'accesso vi sarà richiesto username e password, inserite come username *user* e password *cyberintelligence*.
-      - potrete accedere a Kibana all’indirizzo [http://localhost:5601/app/home#/](http://localhost:5601/app/home#/)
+Dopo che le immagini delle varie macchine saranno pronte, saranno istanziate e pronte per l’uso. In particolare, da un browser (Chrome, Safari, Firefox, ecc.) installato sulla vostra macchina, potrete 
+      - accedere a Nifi collegandovi all’indirizzo [https://localhost:8443/nifi/](https://localhost:8443/nifi/) . Per l'accesso vi sarà richiesto username e password, inserite come username *user* e password *cyberintelligence*.
+      - accedere a Kibana all’indirizzo [http://localhost:5601/app/home#/](http://localhost:5601/app/home#/)
       
       **N.B.: il comando `docker-compose up` rimane in esecuzione a tempo indefinito perchè serve a lanciare in foreground i software elasticsearch, kibana e nifi. Se volete terminare l'esecuzione dei software dovete farlo in modo esplicito terminando da shell il comando docker-compose con un CTRL-c.**
 
