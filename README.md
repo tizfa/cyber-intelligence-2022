@@ -6,7 +6,7 @@ Soluzione dockerizzata per NiFi e Elasticsearch. Il progetto sarà utilizzato ne
 1. Scaricate e installate Docker Desktop da https://www.docker.com/products/docker-desktop/#
 2. Scaricare la soluzione dockerizzata da  https://github.com/tizfa/cyber-intelligence-2022 all’interno di una cartella locale utilizzando uno dei metodi possibili (ad esempio pacchetto zip oppure tramite il comando git clone). Ad esempio tramite git potete scaricare il progetto con il seguente comando  
 `git clone https://github.com/tizfa/cyber-intelligence-2022.git` Se non avete installato git sulla vostra macchina potete eseguire le istruzioni disponibili su https://git-scm.com/book/en/v2/Getting-Started-Installing-Git.
-3. Posizionatevi con una shell all’interno della cartella contenente i file del progetto
+3. Posizionatevi con una shell all’interno della cartella contenente i file del progetto. Dovete aprire un terminale (su Mac l’applicazione si chiama “Terminale”, su Windows “Prompt dei comandi”, ecc.) e posizionarvi sulla cartella in cui avete scaricato il progetto (con il comando “cd <nome_cartella>”, cercate il comando *cd* su Web se avete bisogno di ulteriori chiarimenti sul comando)
 4. Eseguite il comando  
 `docker-compose up`  
 per runnare la soluzione docker
