@@ -21,7 +21,6 @@ PUT twitter
             },
             "polarity": {
               "type": "long"
-            
             }
           }
         },
