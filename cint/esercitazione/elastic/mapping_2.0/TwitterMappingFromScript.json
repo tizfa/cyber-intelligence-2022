@@ -57,9 +57,7 @@ PUT twitter
                 }
               }
             },
-            "geo": {
-              "type": "object"
-            },
+            
             "hashtags": {
               "type": "text",
               "fields": {

@@ -108,6 +108,35 @@ def extractUrls(jsonData):
     return ret
 
 
+def getPlaceIDInfo(placeid, jsonData):
+    if not "places" in jsonData["includes"]:
+        return {}
+    places = jsonData["includes"]["places"]
+    for p in places:
+        if p["id"] != placeid:
+            continue
+        ret = {}
+        ret["country_code"] = p["country_code"]
+        ret["name"] = p["name"]
+        ret["full_name"] = p["full_name"]
+        ret["country"] = p["country"]
+        ret["place_type"] = p["place_type"]
+        return ret
+    return {}
+
+
+def extractGeo(jsonData):
+    ent = jsonData["data"]["geo"]
+    if not "coordinates" in ent:
+        return {}
+    ret = {}
+    ret["coordinates"] = jsonData["data"]["geo"]["coordinates"]
+    place_id = jsonData["data"]["geo"]["place_id"]
+    ret["place"] = getPlaceIDInfo(place_id, jsonData)
+
+    return ret
+
+
 def extractCtxAnnotations(jsonData):
     if not "context_annotations" in jsonData["data"]:
         return []
@@ -145,7 +174,7 @@ def simplifyDataFormat(jsonData):
     tweet["reply_count"] = jsonData["data"]["public_metrics"]["reply_count"]
     tweet["like_count"] = jsonData["data"]["public_metrics"]["like_count"]
     tweet["quote_count"] = jsonData["data"]["public_metrics"]["quote_count"]
-    tweet["geo"] = jsonData["data"]["geo"]
+    tweet["geo"] = extractGeo(jsonData)
     tweet["hashtags"] = extractHashtags(jsonData)
     tweet["mentions"] = extractMentions(jsonData)
     tweet["urls"] = extractUrls(jsonData)
@@ -184,7 +213,7 @@ def get_stream():
     req += ",geo"
     req += ",lang"
     req += ",public_metrics"
-    req += "&expansions=author_id&user.fields=" # For user info
+    req += "&expansions=author_id,geo.place_id&user.fields=" # For user info
     req += "created_at"
     req += ",name"
     req += ",username"
@@ -194,6 +223,7 @@ def get_stream():
     req += ",public_metrics"
     req += ",url"
     req += ",verified"
+    req += "&place.fields=contained_within,country,country_code,full_name,id,name,place_type"
 
 
 

@@ -37,6 +37,9 @@ RUN ln -s /opt/nifi-1.16.0 /opt/nifi
 #RUN mkdir -p /home/cint
 #COPY cint /home/cint
 
+RUN pip3 install pandas
+
+
 EXPOSE 8080
 EXPOSE 8443
 EXPOSE 9088
