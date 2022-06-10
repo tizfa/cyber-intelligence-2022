@@ -1,0 +1,137 @@
+PUT earthquakes
+{
+  "settings": {
+    "index": {
+      "number_of_shards": 3,
+      "number_of_replicas": 2
+    }
+  },
+  "mappings": {
+    "properties": {
+      "Azimuthal Gap": {
+        "type": "float"
+      },
+      "Date": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "Depth": {
+        "type": "float"
+      },
+      "Depth Error": {
+        "type": "float"
+      },
+      "Depth Seismic Stations": {
+        "type": "float"
+      },
+      "Horizontal Distance": {
+        "type": "float"
+      },
+      "Horizontal Error": {
+        "type": "float"
+      },
+      "ID": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "Latitude": {
+        "type": "float"
+      },
+      "Location": {
+        "type": "geo_point"
+      },
+      "Location Source": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "Longitude": {
+        "type": "float"
+      },
+      "Magnitude": {
+        "type": "float"
+      },
+      "Magnitude Error": {
+        "type": "float"
+      },
+      "Magnitude Seismic Stations": {
+        "type": "float"
+      },
+      "Magnitude Source": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "Magnitude Type": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "Root Mean Square": {
+        "type": "float"
+      },
+      "Source": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "Status": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "Time": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "Timestamp": {
+        "type": "date",
+        "format": "MM/dd/yyyy HH:mm:ss"
+      },
+      "Type": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      }
+    }
+  }
+}

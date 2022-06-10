@@ -197,6 +197,31 @@ PUT twitter
               "type": "boolean"
             }
           }
+        },
+        "politicians": {
+          "properties": {
+             "polarity": {
+               "type": "integer"
+             },
+             "names": {
+               "type": "text"
+             }
+          }
+        },
+        "webpage": {
+          "properties": {
+            "url": {
+              "type": "keyword"
+            },
+            "title": {
+              "type": "text",
+              "fielddata": true
+            },
+            "content": {
+              "type": "text",
+              "fielddata": true
+            }
+          }
         }
       }
     }
