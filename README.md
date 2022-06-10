@@ -24,3 +24,6 @@ La soluzione dockerizzata viene eseguita all'interno di una rete privata compost
 - nifi-container: nome della VM contenente l'istanza di Nifi.
 
 Da ciascuna di queste macchine si può comunicare con le altre riferendosi con il nome macchina riportato sopra, ad esempio nel processore PutElasticsearchHttp di Nifi posso connettermi al web service esposto da `elasticsearch` utilizzando l'url http://es-container:9200.
+
+## Aggiornamento delle immagini delle VM contenute all'interno della soluzione dockerizzata
+Tutte le volte che fate un aggiornamento del repository git tramite una *pull*, per essere certi di utilizzare una versione aggiornata delle immagini dovete riavviare la soluzione con il comando `docker-compose build;docker-compose up` sempre eseguito dalla cartella principale della soluzione dockerizzata.
