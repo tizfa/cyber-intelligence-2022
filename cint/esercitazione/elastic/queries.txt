@@ -19,14 +19,14 @@ POST _analyze
 
 ##############  ESEMPI DI QUERY ###############
 
-GET twitter/_search
+GET films/_search
 {
   "from": 0,
   "size": 20,
   "query": {
     "match": {
-      "text": {
-        "query": "salvini migranti",
+      "descrizione": {
+        "query": "rapina banca",
         "operator": "and"
       }
     }
@@ -35,14 +35,15 @@ GET twitter/_search
 
 
 
-GET twitter/_search
+
+GET films/_search
 {
   "from": 0,
   "size": 20,
   "query": {
     "match": {
-      "text": {
-        "query": "salvini m5s",
+      "descrizione": {
+        "query": "terrorismo banca",
         "operator": "or"
       }
     }
@@ -50,79 +51,96 @@ GET twitter/_search
 }
 
 
-GET twitter/_search
+GET films/_search
+{
+  "from": 0,
+  "size": 20,
+  "query": {
+    "match": {
+      "attori": {
+        "query": "bova morante",
+        "operator": "or"
+      }
+    }
+  }
+}
+
+
+GET films/_search
 {
   "query": {
     "match_phrase": {
-      "text": {
-        "query": "migranti",
-        "slop": 2
+      "descrizione": {
+        "query": "coppia figlio",
+        "slop": 5
       }
-      
     }
   }
 }
 
 
-GET twitter/_search
+GET films/_search
 {
   "query": {
     "match_phrase_prefix": {
-      "text": {
-        "query": "putin sal",
-        "slop": 10
+      "descrizione": {
+        "query": "banca rap",
+        "slop": 5
       }
-      
     }
   }
 }
 
 
-GET twitter/_search
+GET films/_search
 {
   "query": {
     "multi_match": {
-      "query": "putin salvini",
+      "query": "new york",
       "type": "best_fields",
-      "fields": ["webpage.title^3", "text"],
+      "fields": ["titolo_italiano^3", "descrizione"],
       "operator": "and"
     }
   }
 }
 
 
-GET twitter/_search
+GET films/_search
 {
   "query": {
     "query_string": {
-      "default_field": "text", 
-      "query": "user.description:destra AND text:salvini",
-      "default_operator": "OR"
-    }
-  }
-
-
-GET twitter/_search
-{
-  "query": {
-    "query_string": {
-      "default_field": "text", 
-      "query": "webpage.content:(salvini putin)",
+      "default_field": "text",
+      "query": "voto_medio:>=7 AND descrizione:gangster",
       "default_operator": "OR"
     }
   }
 }
 
-GET twitter/_search
+
+GET films/_search
 {
   "query": {
     "query_string": {
       "default_field": "text", 
-      "query": "webpage.content:salvini putin",
+      "query": "(genere:Drammatico AND titolo_italiano:paura) OR (genere:Azione AND descrizione:combattimento)",
       "default_operator": "OR"
     }
   }
 }
+
+
+GET films/_search
+{
+  "query": {
+    "query_string": {
+      "default_field": "text",
+      "query": "anno:[1990-01-01 TO 2010-12-31] AND "new york"",
+      "default_operator": "OR"
+    }
+  }
+}
+
+
 
 
 GET twitter/_search

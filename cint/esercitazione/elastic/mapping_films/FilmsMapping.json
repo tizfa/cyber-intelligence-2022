@@ -1,0 +1,136 @@
+PUT films
+{
+  "settings": {
+    "analysis": {
+      "filter": {
+        "italian_elision": {
+          "type": "elision",
+          "articles": [
+                "c", "l", "all", "dall", "dell",
+                "nell", "sull", "coll", "pell",
+                "gl", "agl", "dagl", "degl", "negl",
+                "sugl", "un", "m", "t", "s", "v", "d"
+          ],
+          "articles_case": true
+        },
+        "italian_stop": {
+          "type":       "stop",
+          "stopwords":  "_italian_"
+        }
+      },
+      "analyzer": {
+        "italian_custom_analyzer": {
+          "tokenizer":  "standard",
+          "filter": [
+            "italian_elision",
+            "lowercase",
+            "italian_stop"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "anno": {
+        "type": "date"
+      },
+      "attori": {
+        "type": "text",
+        "fielddata": true,
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "descrizione": {
+        "type": "text",
+        "fielddata": true,
+        "analyzer":"italian_custom_analyzer"
+      },
+      "durata": {
+        "type": "long"
+      },
+      "erotismo": {
+        "type": "long"
+      },
+      "filmtv_id": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "genere": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "humor": {
+        "type": "long"
+      },
+      "impegno": {
+        "type": "long"
+      },
+      "note": {
+        "type": "text",
+        "fielddata": true,
+        "analyzer":"italian_custom_analyzer"
+      },
+      "paese": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "registi": {
+        "type": "text",
+        "fielddata": true,
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "ritmo": {
+        "type": "long"
+      },
+      "tensione": {
+        "type": "long"
+      },
+      "titolo_italiano": {
+        "type": "text",
+        "fielddata": true,
+        "analyzer":"italian_custom_analyzer"
+      },
+      "titolo_originale": {
+        "type": "text",
+        "fielddata": true
+      },
+      "voti_totali": {
+        "type": "long"
+      },
+      "voto_critica": {
+        "type": "float"
+      },
+      "voto_medio": {
+        "type": "float"
+      },
+      "voto_pubblico": {
+        "type": "float"
+      }
+    }
+  }
+}

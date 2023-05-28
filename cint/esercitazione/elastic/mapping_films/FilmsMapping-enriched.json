@@ -1,0 +1,58 @@
+PUT films_enriched
+{
+  "mappings": {
+    "properties": {
+      "filmtv_id": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "titolo_originale": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "anno": {
+        "type": "date"
+      },
+      "genere": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "durata": {
+        "type": "long"
+      },
+      "sentiment_polarity": {
+        "type": "integer"
+      },
+      "webpage": {
+          "properties": {
+            "url": {
+              "type": "keyword"
+            },
+            "title": {
+              "type": "text",
+              "fielddata": true
+            },
+            "content": {
+              "type": "text",
+              "fielddata": true
+            }
+          }
+        }
+    }
+  }
+}

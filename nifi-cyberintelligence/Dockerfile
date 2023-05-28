@@ -3,19 +3,19 @@ FROM ubuntu
 
 # Install Python 3.9 and default Java JDK.
 RUN apt-get update && \
-	apt-get -y install python3.9 python3-pip default-jdk wget && \
+	apt-get -y install python3.9 python3-pip default-jdk wget unzip && \
 	apt-get clean
 
 # Install Nifi
-RUN wget -P /opt https://archive.apache.org/dist/nifi/1.16.0/nifi-1.16.0-bin.tar.gz
-RUN tar -xvzf /opt/nifi-1.16.0-bin.tar.gz -C /opt
+RUN wget -P /opt https://archive.apache.org/dist/nifi/1.16.0/nifi-1.16.0-bin.zip
+RUN unzip /opt/nifi-1.16.0-bin.zip -d /opt
 RUN echo "nifi.web.https.host=0.0.0.0" >> /opt/nifi-1.16.0/conf/nifi.properties
 RUN echo "nifi.web.https.network.interface.default=eth0" >> /opt/nifi-1.16.0/conf/nifi.properties
 RUN echo "nifi.web.https.network.interface.lo=lo" >> /opt/nifi-1.16.0/conf/nifi.properties
 
 
 # Install all required Pytjhon modules.
-RUN apt-get install -y libicu-dev python3-icu && pip3 install gensim nltk polyglot six requests morfessor readability-lxml bs4
+RUN apt-get install -y libicu-dev python3-icu && pip3 install gensim nltk polyglot six requests morfessor readability-lxml bs4 praw pandas urllib3==1.26.6
 
 # Install pycld2
 RUN ln -s /usr/bin/python3 /usr/bin/python && apt-get install unzip && \
@@ -26,7 +26,7 @@ RUN ln -s /usr/bin/python3 /usr/bin/python && apt-get install unzip && \
 RUN polyglot download LANG:it LANG:en
 
 # Reclaim disk space.
-RUN apt-get clean && rm -fr /opt/nifi-1.16.0-bin.tar.gz
+RUN apt-get clean && rm -fr /opt/nifi-1.16.0-bin.zip
 
 RUN /opt/nifi-1.16.0/bin/nifi.sh set-single-user-credentials user cyberintelligence
 COPY login-identity-providers.xml /opt/nifi-1.16.0/conf/
@@ -37,7 +37,6 @@ RUN ln -s /opt/nifi-1.16.0 /opt/nifi
 #RUN mkdir -p /home/cint
 #COPY cint /home/cint
 
-RUN pip3 install pandas
 
 
 EXPOSE 8080
