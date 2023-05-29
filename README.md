@@ -1,5 +1,5 @@
-# cyber-intelligence-2022
-Soluzione dockerizzata per NiFi e Elasticsearch. Il progetto sarà utilizzato nell'ambito del corso 2022 di "Cyber Intelligence" del master in CyberSecurity dell'Università di Pisa
+# cyber-intelligence-2023
+Soluzione dockerizzata per NiFi e Elasticsearch. Il progetto sarà utilizzato nell'ambito del corso 2023 di "Cyber Intelligence" del master in CyberSecurity dell'Università di Pisa
 
 ## Istruzioni per utilizzare la soluzione dockerizzata
 
